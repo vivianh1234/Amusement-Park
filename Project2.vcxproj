@@ -103,6 +103,7 @@
     <ClCompile Include="GenericException.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="libtarga.c" />
+    <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Track.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldWindow.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="GenericException.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="libtarga.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Track.h" />
     <ClInclude Include="WorldWindow.h" />
   </ItemGroup>

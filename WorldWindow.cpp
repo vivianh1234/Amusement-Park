@@ -12,6 +12,7 @@
 #include <Fl/gl.h>
 #include <GL/glu.h>
 #include <stdio.h>
+#include "Mushroom.h"
 
 const double WorldWindow::FOV_X = 45.0;
 
@@ -35,6 +36,7 @@ WorldWindow::draw(void)
 {
     double  eye[3];
     float   color[4], dir[4];
+	Mushroom mush;
 
     if ( ! valid() )
     {
@@ -113,6 +115,7 @@ WorldWindow::draw(void)
     // Draw stuff. Everything.
     ground.Draw();
     traintrack.Draw();
+	mush.Draw();
 }
 
 
