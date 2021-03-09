@@ -115,7 +115,10 @@ WorldWindow::draw(void)
     // Draw stuff. Everything.
     ground.Draw();
     traintrack.Draw();
-	mush.Draw();
+
+	mush.Draw(2, 1.5, 2.5, -40, -20, 0);
+	mush.Draw(4, 0.5, 2, -30, 35, 0);
+	mush.Draw(4, 0.5, 2, -20, -45, 0);
 }
 
 

@@ -9,8 +9,8 @@ class Mushroom
 		~Mushroom(void);
 		bool Initialize(void);
 		void Draw(void);
-		void Draw(float height, float radius, float x, float y, float z);
-		void drawHalfSphere(int scaley, int scalex, GLfloat r);
+		void Draw(float base_height, float base_rad, float top_rad, float x, float y, float z);
+		void DrawHalfSphere(int scaley, int scalex, GLfloat r);
 		void DrawCircle(float cx, float cy, float r, int num_segments);
 
 	private:
