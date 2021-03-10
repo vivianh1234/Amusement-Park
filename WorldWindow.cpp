@@ -88,6 +88,7 @@ WorldWindow::draw(void)
 	// Initialize all the objects.
 	ground.Initialize();
 	traintrack.Initialize();
+	mush.Initialize();
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -114,11 +115,12 @@ WorldWindow::draw(void)
 
     // Draw stuff. Everything.
     ground.Draw();
-    traintrack.Draw();
-
-	mush.Draw(2, 1.5, 2.5, -40, -20, 0);
+    //traintrack.Draw();
+	mush.Draw();
+	/*mush.Draw(2, 1.5, 2.5, -40, -20, 0);
 	mush.Draw(4, 0.5, 2, -30, 35, 0);
 	mush.Draw(4, 0.5, 2, -20, -45, 0);
+	*/
 }
 
 

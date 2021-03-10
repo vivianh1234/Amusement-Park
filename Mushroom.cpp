@@ -4,6 +4,7 @@
 #include <GL/glu.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <iostream>
 
 //Constructor
 Mushroom::Mushroom(void)
@@ -22,6 +23,10 @@ Mushroom::~Mushroom(void)
 //Initializer
 bool Mushroom::Initialize(void)
 {
+    glEnable(GL_TEXTURE_2D);
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    LoadTexture("mushroom_texture.tga");
+
 
 	initialized = true;
 	return true;
@@ -100,14 +105,14 @@ void Mushroom::DrawHalfSphere(int scaley, int scalex, GLfloat r) {
             v[i * scaley + j][2] = r * sin(j * 2 * M_PI / scaley) * cos(i * M_PI / (2 * scalex));
         }
     }
-
+   
     glBegin(GL_QUADS);
     for (i = 0; i < scalex - 1; ++i) {
         for (j = 0; j < scaley; ++j) {
-            glVertex3fv(v[i * scaley + j]);
-            glVertex3fv(v[i * scaley + (j + 1) % scaley]);
-            glVertex3fv(v[(i + 1) * scaley + (j + 1) % scaley]);
-            glVertex3fv(v[(i + 1) * scaley + j]);
+            glTexCoord2f(0, 1); glVertex3fv(v[i * scaley + j]);
+            glTexCoord2f(0, 0); glVertex3fv(v[i * scaley + (j + 1) % scaley]);
+            glTexCoord2f(1, 0); glVertex3fv(v[(i + 1) * scaley + (j + 1) % scaley]);
+            glTexCoord2f(1, 1); glVertex3fv(v[(i + 1) * scaley + j]);
         }
     }
     glEnd();
@@ -151,3 +156,63 @@ void Mushroom::DrawCircle(float cx, float cy, float r, int num_segments)
     }
     glEnd();
 }
+
+//Load Texture
+void Mushroom::LoadTexture(const char* filename)
+{
+    TargaImage* image = TargaImage::Load_Image((char*)filename);
+    if (!image)
+    {
+        std::cerr << "Failed to load texture:  " << filename << std::endl;
+        return;
+    }
+
+    // reverse the row order
+    TargaImage* reversedImage = image->Reverse_Rows();
+    delete image;
+    image = reversedImage;
+
+    if (!ResizeImage(image))
+    {
+        std::cerr << "Failed to resize texture." << std::endl;
+        return;
+    }
+
+    glGenTextures(1, &textureId);
+    glBindTexture(GL_TEXTURE_2D, textureId);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->width, image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->data);
+}
+
+//Resize Image
+bool Mushroom::ResizeImage(TargaImage* image)
+{
+    int newWidth = pow(2.0, (int)ceil(log((float)image->width) / log(2.f)));
+    int newHeight = pow(2.0, (int)ceil(log((float)image->width) / log(2.f)));
+
+    newWidth = max(64, newWidth);
+    newHeight = max(64, newHeight);
+
+    if (newWidth != image->width && newHeight != image->height)
+    {
+        unsigned char* scaledData = new unsigned char[newWidth * newHeight * 4];
+        if (gluScaleImage(GL_RGBA, image->width, image->height, GL_UNSIGNED_BYTE, image->data, newWidth, newHeight, GL_UNSIGNED_BYTE, scaledData) != 0)
+        {
+            delete[] scaledData;
+            return false;
+        }// if
+
+        delete image->data;
+        image->data = scaledData;
+        image->width = newWidth;
+        image->height = newHeight;
+    }// if
+
+    return true;
+}
+
+
