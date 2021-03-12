@@ -65,7 +65,7 @@ bool Mushroom::Initialize(void)
 	return true;
 }
 
-//Draws a small mushroom in the center of the map
+//Draws a mushroom in the center of the map
 void Mushroom::Draw(void)
 {
     //Draw cylinder for base
@@ -87,7 +87,7 @@ void Mushroom::Draw(void)
     glColor3f(1, 0, 0);
     glTranslatef(0, 0, 3);
     glRotatef(90, 1, 0, 0);
-    DrawHalfSphere(5.0f, 5.0f, 2);
+    DrawHalfSphere(20, 20, 2);
     //glCallList(display_list);
 	glPopMatrix();
     
@@ -116,7 +116,7 @@ void Mushroom::Draw(float base_height, float base_rad, float top_rad, float x, f
     glColor3f(1, 0, 0);
     glTranslatef(x, y, z + base_height);
     glRotatef(90, 1, 0, 0);
-    DrawHalfSphere(5, 5, top_rad);
+    DrawHalfSphere(20, 20, top_rad);
     //glCallList(display_list);
     glPopMatrix();
 
@@ -165,6 +165,16 @@ void Mushroom::DrawHalfSphere(int scaley, int scalex, GLfloat r) {
             glTexCoord2f(0, 0); glVertex3fv(v[i * scaley + (j + 1) % scaley]);
             glTexCoord2f(1, 0); glVertex3fv(v[(i + 1) * scaley + (j + 1) % scaley]);
             glTexCoord2f(1, 1); glVertex3fv(v[(i + 1) * scaley + j]);*/
+
+            //calc normals
+            float normal[3];
+            CalcNormal(v[i * scaley + j][0], v[i * scaley + j][1], v[i * scaley + j][2],
+                v[i * scaley + (j + 1) % scaley][0], v[i * scaley + (j + 1) % scaley][1], v[i * scaley + (j + 1) % scaley][2],
+                v[(i + 1) * scaley + j][0], v[(i + 1) * scaley + j][1], v[(i + 1) * scaley + j][2],
+                normal);
+
+            glNormal3f(normal[0], normal[1], normal[2]);
+
             glVertex3fv(v[i * scaley + j]);
             glVertex3fv(v[i * scaley + (j + 1) % scaley]);
             glVertex3fv(v[(i + 1) * scaley + (j + 1) % scaley]);
@@ -176,6 +186,37 @@ void Mushroom::DrawHalfSphere(int scaley, int scalex, GLfloat r) {
     //glDisable(GL_TEXTURE_2D);
     //glEndList();
 }
+
+//https://community.khronos.org/t/lighting-a-textured-sphere-calculating-normals/56197
+void Mushroom::CalcNormal(float p1_x, float p1_y, float p1_z, float p2_x, float p2_y, float p2_z, float p3_x, float p3_y, float p3_z, float normal[3])
+{
+    // Calculate vectors
+    float var1_x = p2_x - p1_x;
+    float var1_y = p2_y - p1_y;
+    float var1_z = p2_z - p1_z;
+
+    float var2_x = p3_x - p1_x;
+    float var2_y = p3_y - p1_y;
+    float var2_z = p3_z - p1_z;
+
+    // Get cross product of vectors
+    normal[0] = (var1_y * var2_z) - (var2_y * var1_z);
+    normal[1] = (var1_z * var2_x) - (var2_z * var1_x);
+    normal[2] = (var1_x * var2_y) - (var2_x * var1_y);
+
+    // Normalise final vector
+    float vLen = sqrt((normal[0] * normal[0]) + (normal[1] * normal[1]) + (normal[2] * normal[2]));
+
+   /* normal[0] = normal[0] / vLen;
+    normal[1] = normal[1] / vLen;
+    normal[2] = normal[2] / vLen;
+    */
+    normal[0] = -1 * (normal[0] / vLen);
+    normal[1] = -1 * (normal[1] / vLen);
+    normal[2] = -1 * (normal[2] / vLen);
+
+}
+
 
 //Draws a red circle
 //Code modified from: http://slabode.exofire.net/circle_draw.shtml

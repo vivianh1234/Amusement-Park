@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include "Mushroom.h"
 #include "Tree.h"
+#include "Rock.h"
 
 const double WorldWindow::FOV_X = 45.0;
 
@@ -39,6 +40,7 @@ WorldWindow::draw(void)
     float   color[4], dir[4];
 	Mushroom mush;
 	Tree tree;
+	Rock rock;
 
     if ( ! valid() )
     {
@@ -57,7 +59,7 @@ WorldWindow::draw(void)
 
 	// Turn on back face culling. Faces with normals away from the viewer
 	// will not be drawn.
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 
 	// Enable lighting with one light.
 	glEnable(GL_LIGHT0);
@@ -92,6 +94,7 @@ WorldWindow::draw(void)
 	traintrack.Initialize();
 	mush.Initialize();
 	tree.Initialize();
+	rock.Initialize();
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -120,11 +123,19 @@ WorldWindow::draw(void)
     ground.Draw();
     traintrack.Draw();
 	//mush.Draw();
-	mush.Draw(2, 1.5, 2.5, -40, -20, 0);
-	mush.Draw(4, 0.5, 2, -30, 35, 0);
-	mush.Draw(4, 0.5, 2, -20, -45, 0);
-	tree.Draw();
-	
+	mush.Draw(1, 0.5, 1.5, -40, -20, 0);
+	mush.Draw(2, 0.5, 1, -30, 35, 0);
+	mush.Draw(2, 0.5, 1, -20, -45, 0);
+	//tree.Draw();
+	tree.Draw(3, 8, 1.5, 3, -45, -45, 0);
+	tree.Draw(3, 8, 1.5, 3, -45, 45, 0);
+	tree.Draw(3, 8, 1.5, 3, -40, 20, 0);
+	tree.Draw(4, 10, 1, 2, -48, 10, 0);
+	tree.Draw(4, 10, 1, 2, -48, -25, 0);
+	tree.Draw(4, 12, 1.5, 4, -43, -35, 0);
+	tree.Draw(4, 14, 1.5, 4, -43, 30, 0);
+	//rock.Draw();
+	rock.Draw(1, 10, -34, 0);
 }
 
 
