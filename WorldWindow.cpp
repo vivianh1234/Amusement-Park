@@ -15,6 +15,7 @@
 #include "Mushroom.h"
 #include "Tree.h"
 #include "Rock.h"
+//#include "Path.h"
 
 const double WorldWindow::FOV_X = 45.0;
 
@@ -41,6 +42,7 @@ WorldWindow::draw(void)
 	Mushroom mush;
 	Tree tree;
 	Rock rock;
+	//Path path;
 
     if ( ! valid() )
     {
@@ -95,6 +97,7 @@ WorldWindow::draw(void)
 	mush.Initialize();
 	tree.Initialize();
 	rock.Initialize();
+	//path.Initialize();
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -134,12 +137,24 @@ WorldWindow::draw(void)
 	tree.Draw(4, 10, 1, 2, -48, -25, 0);
 	tree.Draw(4, 12, 1.5, 4, -43, -35, 0);
 	tree.Draw(4, 14, 1.5, 4, -43, 30, 0);
+	tree.Draw(2, 4, 1, 1.5, 45, -5, 0);
+	tree.Draw(2, 4, 1, 1.5, 45, 5, 0);	
+	tree.Draw(2, 4, 1, 1.5, 42, -5, 0);
+	tree.Draw(2, 4, 1, 1.5, 42, 5, 0);
+	tree.Draw(2, 4, 1, 1.5, 39, -5, 0);
+	tree.Draw(2, 4, 1, 1.5, 39, 5, 0);
+	tree.Draw(2, 4, 1, 1.5, 36, -5, 0);
+	tree.Draw(2, 4, 1, 1.5, 36, 5, 0);
+	tree.Draw(2, 4, 1, 1.5, 33, -5, 0);
+	tree.Draw(2, 4, 1, 1.5, 33, 5, 0);
+	tree.Draw(2, 4, 1, 1.5, 30, -5, 0);
+	tree.Draw(2, 4, 1, 1.5, 30, 5, 0);
 	//rock.Draw();
 	rock.Draw(1, 10, -34, 0);
 	rock.Draw(1, -45, 12, 0);
 	rock.Draw(1, -40, -32, 0);
 	rock.Draw(0.5, -38, -35, 0);
-
+	//path.Draw();
 }
 
 

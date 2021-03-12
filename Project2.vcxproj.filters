@@ -45,6 +45,9 @@
     <ClCompile Include="Rock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubicBspline.h">
@@ -71,10 +74,14 @@
     <ClInclude Include="Rock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="mushroom_texture.tga" />
     <Image Include="bee.tga" />
     <Image Include="bee2.tga" />
+    <Image Include="pebble.tga" />
   </ItemGroup>
 </Project>
