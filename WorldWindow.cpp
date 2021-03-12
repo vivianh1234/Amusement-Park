@@ -13,6 +13,7 @@
 #include <GL/glu.h>
 #include <stdio.h>
 #include "Mushroom.h"
+#include "Tree.h"
 
 const double WorldWindow::FOV_X = 45.0;
 
@@ -37,6 +38,7 @@ WorldWindow::draw(void)
     double  eye[3];
     float   color[4], dir[4];
 	Mushroom mush;
+	Tree tree;
 
     if ( ! valid() )
     {
@@ -89,6 +91,7 @@ WorldWindow::draw(void)
 	ground.Initialize();
 	traintrack.Initialize();
 	mush.Initialize();
+	tree.Initialize();
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -115,12 +118,13 @@ WorldWindow::draw(void)
 
     // Draw stuff. Everything.
     ground.Draw();
-    //traintrack.Draw();
-	mush.Draw();
-	/*mush.Draw(2, 1.5, 2.5, -40, -20, 0);
+    traintrack.Draw();
+	//mush.Draw();
+	mush.Draw(2, 1.5, 2.5, -40, -20, 0);
 	mush.Draw(4, 0.5, 2, -30, 35, 0);
 	mush.Draw(4, 0.5, 2, -20, -45, 0);
-	*/
+	tree.Draw();
+	
 }
 
 
