@@ -20,6 +20,7 @@ class Track {
     float	    posn_on_track;  // The train's parametric position on the
 				    // track.
     float	    speed;	    // The train's speed, in world coordinates
+    GLuint  texture_obj;
 
     static const int	TRACK_NUM_CONTROLS;	// Constants about the track.
     static const float 	TRACK_CONTROLS[][3];

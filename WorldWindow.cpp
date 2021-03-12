@@ -136,6 +136,10 @@ WorldWindow::draw(void)
 	tree.Draw(4, 14, 1.5, 4, -43, 30, 0);
 	//rock.Draw();
 	rock.Draw(1, 10, -34, 0);
+	rock.Draw(1, -45, 12, 0);
+	rock.Draw(1, -40, -32, 0);
+	rock.Draw(0.5, -38, -35, 0);
+
 }
 
 

@@ -53,7 +53,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>\\thoth.cecs.pdx.edu\Home03\hvivian\Desktop\CompGraphics\fltk-1.3.5-vs2019\fltk-1.3.5-vs2019;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>\\thoth.cecs.pdx.edu\Home03\hvivian\Desktop\CompGraphics\assimp-5.0.1\assimp-5.0.1;\\thoth.cecs.pdx.edu\Home03\hvivian\Desktop\CompGraphics\fltk-1.3.5-vs2019\fltk-1.3.5-vs2019;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;FL_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -65,7 +65,7 @@
     <Link>
       <AdditionalDependencies>fltkd.lib;opengl32.lib;glu32.lib;fltkgld.lib;wsock32.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)Project2.exe</OutputFile>
-      <AdditionalLibraryDirectories>\\thoth.cecs.pdx.edu\Home03\hvivian\Desktop\CompGraphics\fltk-1.3.5-vs2019\fltk-1.3.5-vs2019\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>\\thoth.cecs.pdx.edu\Home03\hvivian\Desktop\CompGraphics\assimp-5.0.1\assimp-5.0.1;\\thoth.cecs.pdx.edu\Home03\hvivian\Desktop\CompGraphics\fltk-1.3.5-vs2019\fltk-1.3.5-vs2019\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)Project3.pdb</ProgramDatabaseFile>
@@ -104,7 +104,9 @@
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="libtarga.c" />
     <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Track.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldWindow.cpp" />
   </ItemGroup>
@@ -114,10 +116,13 @@
     <ClInclude Include="Ground.h" />
     <ClInclude Include="libtarga.h" />
     <ClInclude Include="Mushroom.h" />
+    <ClInclude Include="Rock.h" />
     <ClInclude Include="Track.h" />
     <ClInclude Include="WorldWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="bee.tga" />
+    <Image Include="bee2.tga" />
     <Image Include="mushroom_texture.tga" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
