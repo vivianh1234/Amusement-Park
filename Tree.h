@@ -10,9 +10,8 @@ public:
 	~Tree(void);
 	bool Initialize(void);
 	void Draw(void);
-	//void Draw(float base_height, float base_rad, float top_rad, float x, float y, float z);
+	void Draw(float base_height, float top_height, float base_rad, float top_rad, float x, float y, float z);
 	void DrawCircle(float cx, float cy, float r, int num_segments);
-
 
 private:
 	bool initialized;

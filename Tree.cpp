@@ -56,35 +56,33 @@ void Tree::Draw(void)
 
 }
 
-//Draws a mushroom based on given parameters
-/*void Mushroom::Draw(float base_height, float base_rad, float top_rad, float x, float y, float z)
+//Draws a tree based on given parameters
+void Tree::Draw(float base_height, float top_height, float base_rad, float top_rad, float x, float y, float z)
 {
     //Draw cylinder for base
     glPushMatrix();
-    glColor3f(244, 235, 186);
+    glColor3f(0.27, 0.15, 0.12);
     glTranslatef(x, y, z);
     GLUquadric* cylinder = gluNewQuadric();
-    gluCylinder(cylinder, base_rad, base_rad * 0.75, base_height, 10, 10);
+    gluCylinder(cylinder, base_rad, base_rad, base_height, 15, 15);
     glPopMatrix();
 
-    //Draw circle (base for top of mushroom)
+    //Draw circle (base for top of tree)
     glPushMatrix();
-    glColor3f(255, 0, 0);
+    glColor3f(0.19, 0.35, 0.12);
     glTranslatef(x, y, z + base_height);
     DrawCircle(0, 0, top_rad, 8);
     glPopMatrix();
 
-    //Draw half-sphere for top
+    //Draw cone for top
     glPushMatrix();
-    glColor3f(255, 0, 0);
+    glColor3f(0.19, 0.35, 0.12);
     glTranslatef(x, y, z + base_height);
-    glRotatef(90, 1, 0, 0);
-    DrawHalfSphere(5, 5, top_rad);
-    //glCallList(display_list);
+    GLUquadric* cone = gluNewQuadric();
+    gluCylinder(cone, top_rad, 0, top_height, 15, 15);
     glPopMatrix();
-
 }
-*/
+
 
 
 //Draws a green circle
