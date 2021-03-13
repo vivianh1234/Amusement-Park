@@ -29,10 +29,11 @@ bool Rock::Initialize(void)
 }
 
 //Draws a small rock in the center of the map
+//Also a pond
 void Rock::Draw(void)
 {
     //Draw circle (base for rock)
-    glPushMatrix();
+   /* glPushMatrix();
     glColor3f(0.71, 0.74, 0.8);
     glTranslatef(0, 0, 1);
     DrawCircle(0, 0, 2, 8);
@@ -44,6 +45,14 @@ void Rock::Draw(void)
     glTranslatef(0, 0, 2);
     glRotatef(90, 1, 0, 0);
     DrawHalfSphere(10, 10, 1);
+    glPopMatrix();
+    */
+
+    //Draw a pond
+    glPushMatrix();
+    glColor3f(0.3, 0.9, 1.0);
+    glTranslatef(20, 30, 1);
+    DrawCircle(0, 0, 10, 20);
     glPopMatrix();
 }
 

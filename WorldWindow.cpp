@@ -16,6 +16,7 @@
 #include "Tree.h"
 #include "Rock.h"
 //#include "Path.h"
+#include "Frog.h"
 
 const double WorldWindow::FOV_X = 45.0;
 
@@ -40,9 +41,11 @@ WorldWindow::draw(void)
     double  eye[3];
     float   color[4], dir[4];
 	Mushroom mush;
+	Mushroom text_mush;
 	Tree tree;
 	Rock rock;
 	//Path path;
+	Frog frog;
 
     if ( ! valid() )
     {
@@ -95,9 +98,11 @@ WorldWindow::draw(void)
 	ground.Initialize();
 	traintrack.Initialize();
 	mush.Initialize();
+	text_mush.Initialize();
 	tree.Initialize();
 	rock.Initialize();
 	//path.Initialize();
+	//frog.Initialize();
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -129,6 +134,8 @@ WorldWindow::draw(void)
 	mush.Draw(1, 0.5, 1.5, -40, -20, 0);
 	mush.Draw(2, 0.5, 1, -30, 35, 0);
 	mush.Draw(2, 0.5, 1, -20, -45, 0);
+	mush.Draw(1, 0.5, 1.5, 20, -15, 0);
+	mush.Draw(2, 0.5, 1, 18, -18, 0);
 	//tree.Draw();
 	tree.Draw(3, 8, 1.5, 3, -45, -45, 0);
 	tree.Draw(3, 8, 1.5, 3, -45, 45, 0);
@@ -149,11 +156,16 @@ WorldWindow::draw(void)
 	tree.Draw(2, 4, 1, 1.5, 33, 5, 0);
 	tree.Draw(2, 4, 1, 1.5, 30, -5, 0);
 	tree.Draw(2, 4, 1, 1.5, 30, 5, 0);
-	//rock.Draw();
+	rock.Draw(); //this draws the pond
 	rock.Draw(1, 10, -34, 0);
 	rock.Draw(1, -45, 12, 0);
 	rock.Draw(1, -40, -32, 0);
 	rock.Draw(0.5, -38, -35, 0);
+	rock.Draw(1, 27, 23, 0);
+	rock.Draw(0.5, 23, 20, 0);
+	rock.Draw(1, -20, 35, 0);
+	rock.Draw(1, 10, 30, 0);
+	rock.Draw(0.75, 11, 32, 0);
 	//path.Draw();
 }
 
